@@ -76,10 +76,11 @@ export const login = catchAsyncErrors(async (req, res, next) => {
 
 export const logout = catchAsyncErrors(async (req, res, next) => {
   res
-    .status(201)
+    .status(200) // Use 200 OK instead of 201 Created
     .cookie("token", "", {
       httpOnly: true,
-      expires: new Date(Date.now()),
+      // secure: process.env.NODE_ENV === "production", // Set secure flag in production
+      sameSite: "Strict", // Optional: Set SameSite attribute for additional security
     })
     .json({
       success: true,
