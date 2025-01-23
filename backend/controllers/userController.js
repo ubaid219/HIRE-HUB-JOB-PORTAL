@@ -4,30 +4,30 @@ import ErrorHandler from "../middlewares/error.js";
 import { sendToken } from "../utils/jwtToken.js";
 import nodemailer from "nodemailer";
 
-const sendWelcomeEmail = async (email, name, password) => {
-  try {
-    const transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 587,
-      secure: false,
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
-    });
+// const sendWelcomeEmail = async (email, name, password) => {
+//   try {
+//     const transporter = nodemailer.createTransport({
+//       host: "smtp.gmail.com",
+//       port: 587,
+//       secure: false,
+//       auth: {
+//         user: process.env.EMAIL_USER,
+//         pass: process.env.EMAIL_PASS,
+//       },
+//     });
 
-    const mailOptions = {
-      from: process.env.EMAIL_USER,
-      to: email,
-      subject: 'Welcome to Our Service!',
-      text: `Hi ${name},\n\nWelcome to Hire-Hub! Your login credentials are:\n\nEmail: ${email}\nPassword: ${password}\n\nThank you for registering!`,
-    };
+//     const mailOptions = {
+//       from: process.env.EMAIL_USER,
+//       to: email,
+//       subject: 'Welcome to Our Service!',
+//       text: `Hi ${name},\n\nWelcome to Hire-Hub! Your login credentials are:\n\nEmail: ${email}\nPassword: ${password}\n\nThank you for registering!`,
+//     };
 
-    await transporter.sendMail(mailOptions);
-  } catch (error) {
-    throw new ErrorHandler('Error sending welcome email');
-  }
-};
+//     await transporter.sendMail(mailOptions);
+//   } catch (error) {
+//     throw new ErrorHandler('Error sending welcome email');
+//   }
+// };
 
 export const register = catchAsyncErrors(async (req, res, next) => {
   const { name, email, phone, password, role } = req.body;
