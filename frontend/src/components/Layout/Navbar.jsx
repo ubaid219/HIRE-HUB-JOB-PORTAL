@@ -12,23 +12,18 @@ const Navbar = () => {
   console.log(user)
 
   const handleLogout = async () => {
-    const navigate = useNavigate(); // Ensure you call useNavigate inside your component
-  
     try {
-      const response = await axios.post(
+      const response = await axios.get(
         "https://hire-hub-job-portal.onrender.com/api/v1/user/logout",
-        {},
         {
           withCredentials: true,
         }
       );
       toast.success(response.data.message);
       setIsAuthorized(false);
-      navigate("/login"); // Use navigate directly instead of navigateTo
+      navigateTo("/login");
     } catch (error) {
-      const errorMessage = error.response?.data?.message || "Logout failed. Please try again.";
-      toast.error(errorMessage);
-      setIsAuthorized(false); // Set to false since the user is logging out
+      toast.error(error.response.data.message), setIsAuthorized(true);
     }
   };
 
