@@ -45,11 +45,11 @@ export const register = catchAsyncErrors(async (req, res, next) => {
     password,
     role,
   });
-  try {
-     sendWelcomeEmail(email, name, password);
-  } catch (error) {
-    return next(new ErrorHandler("Failed to send welcome email"));
-  }
+  // try {
+  //    sendWelcomeEmail(email, name, password);
+  // } catch (error) {
+  //   return next(new ErrorHandler("Failed to send welcome email"));
+  // }
   sendToken(user, 201, res, "User Registered!");
 });
 
