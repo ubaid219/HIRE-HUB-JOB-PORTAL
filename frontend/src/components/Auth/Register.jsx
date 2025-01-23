@@ -3,22 +3,22 @@ import { FaRegUser, FaPencilAlt } from "react-icons/fa";
 import { FaPhoneFlip } from "react-icons/fa6";
 import { MdOutlineMailOutline } from "react-icons/md";
 import { RiLock2Fill } from "react-icons/ri";
-import { Link,  useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { Context } from "../../main";
 
 const Register = () => {
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     name: "",
     phone: "",
     password: "",
-    role: ""
+    role: "",
   });
 
-  const {  setIsAuthorized } = useContext(Context);
+  const { setIsAuthorized } = useContext(Context);
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -39,9 +39,8 @@ const Register = () => {
       );
       // console.log({data})
       toast.success(data.message);
-      navigate("/login")
-      
-      
+      navigate("/login");
+
       setIsAuthorized(true);
     } catch (error) {
       toast.error(error.response.data.message);
@@ -63,7 +62,11 @@ const Register = () => {
           <div className="inputTag">
             <label>Register As</label>
             <div>
-              <select name="role" value={formData.role} onChange={handleInputChange}>
+              <select
+                name="role"
+                value={formData.role}
+                onChange={handleInputChange}
+              >
                 <option value="">Select Role</option>
                 <option value="Employer">Employer</option>
                 <option value="Job Seeker">Job Seeker</option>
