@@ -2,7 +2,7 @@ import { catchAsyncErrors } from "../middlewares/catchAsyncError.js";
 import { User } from "../models/userSchema.js";
 import ErrorHandler from "../middlewares/error.js";
 import { sendToken } from "../utils/jwtToken.js";
-import nodemailer from "nodemailer";
+// import nodemailer from "nodemailer";
 
 // const sendWelcomeEmail = async (email, name, password) => {
 //   try {
